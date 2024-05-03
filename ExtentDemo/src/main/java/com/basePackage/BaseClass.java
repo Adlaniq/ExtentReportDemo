@@ -37,7 +37,7 @@ public class BaseClass {
 
     @BeforeMethod
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\adlaniq\\Downloads\\chromedriver-win64\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/Users/adlaniq/Downloads/chromedriver-mac-arm64/chromedriver");
         ChromeOptions chromeOptions= new ChromeOptions();
         chromeOptions.addArguments("headless");
         chromeOptions.addArguments("window-size=1980,1080");
