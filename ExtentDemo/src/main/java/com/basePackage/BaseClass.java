@@ -10,7 +10,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -24,53 +23,53 @@ import com.extentManager.ExtentManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseClass {
-	public static WebDriver driver;
+    public static WebDriver driver;
 
-	@BeforeSuite
-	public void BeforeSuite() {
-		ExtentManager.setExtent();
-	}
+    @BeforeSuite
+    public void BeforeSuite() {
+        ExtentManager.setExtent();
+    }
 
-	@AfterSuite
-	public void AfterSuite() {
-		ExtentManager.endReport();
-	}
+    @AfterSuite
+    public void AfterSuite() {
+        ExtentManager.endReport();
+    }
 
-	@BeforeMethod
-	public void setup() {
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions chromeOptions= new ChromeOptions();
-		chromeOptions.addArguments("headless");
-		chromeOptions.addArguments("window-size=1980,1080");
-	    driver = new ChromeDriver(chromeOptions);
-		driver.manage().window().maximize();
-		driver.get("https://opensource-demo.orangehrmlive.com/index.php/");
-	}
+    @BeforeMethod
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\adlaniq\\Downloads\\chromedriver-win64\\chromedriver.exe");
+        ChromeOptions chromeOptions= new ChromeOptions();
+        chromeOptions.addArguments("headless");
+        chromeOptions.addArguments("window-size=1980,1080");
+        driver = new ChromeDriver(chromeOptions);
+        driver.manage().window().maximize();
+        driver.get("https://opensource-demo.orangehrmlive.com/index.php/");
+    }
 
-	@AfterMethod
-	public void tearDown(ITestResult result) throws IOException {
-		driver.close();
-	}
+    @AfterMethod
+    public void tearDown(ITestResult result) throws IOException {
+        driver.close();
+    }
 
-	public static String screenShot(WebDriver driver, String filename) {
-		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
-		File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
-		String destination = System.getProperty("user.dir") + "\\ScreenShot\\" + filename + "_" + dateName + ".png";
+    public static String screenShot(WebDriver driver, String filename) {
+        String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+        File source = takesScreenshot.getScreenshotAs(OutputType.FILE);
+        String destination = System.getProperty("user.dir") + "\\ScreenShot\\" + filename + "_" + dateName + ".png";
 
-		try {
-			FileUtils.copyFile(source, new File(destination));
-		} catch (Exception e) {
-			e.getMessage();
-		}
-		// This new path for jenkins
-		String newImageString = "http://localhost:8082/job/Demo4/ws/ExtentDemo/ScreenShot/" + filename + "_"
-				+ dateName + ".png";
-		return newImageString;
-	}
+        try {
+            FileUtils.copyFile(source, new File(destination));
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        // This new path for jenkins
+        String newImageString = "http://localhost:8082/job/Demo4/ws/ExtentDemo/ScreenShot/" + filename + "_"
+                + dateName + ".png";
+        return newImageString;
+    }
 
-	public static String getCurrentTime() {
-		String currentDate = new SimpleDateFormat("yyyy-MM-dd-hhmmss").format(new Date());
-		return currentDate;
-	}
+    public static String getCurrentTime() {
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd-hhmmss").format(new Date());
+        return currentDate;
+    }
 }
