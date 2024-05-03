@@ -37,9 +37,6 @@ public class BaseClass {
 
     @BeforeMethod
     public void setup() {
-        //mac chromedriver directory
-        //System.setProperty("webdriver.chrome.driver", "/Users/adlaniq/Downloads/chromedriver-mac-arm64/chromedriver");
-        //windows chromedriver directory
         System.setProperty("webdriver.chrome.driver", "C:\Users\adlaniq\Downloads\chromedriver-win64\chromedriver-win64\chromedriver.exe");
         ChromeOptions chromeOptions= new ChromeOptions();
         chromeOptions.addArguments("headless");
