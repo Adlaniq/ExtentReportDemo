@@ -18,7 +18,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-
 import com.extentManager.ExtentManager;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
