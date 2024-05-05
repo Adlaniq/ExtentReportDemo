@@ -15,7 +15,6 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.basePackage.BaseClass;
 import com.extentManager.ExtentManager;
 
-
 public class ListenerClass extends ExtentManager implements ITestListener {
 
 	public void onTestStart(ITestResult result) {
